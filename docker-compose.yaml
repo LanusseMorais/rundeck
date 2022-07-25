@@ -1,0 +1,30 @@
+version: '3'
+services:
+  rundeck:
+    image: rundeck/rundeck:4.4.0
+    links:
+      - mariadb
+    environment:
+        RUNDECK_DATABASE_DRIVER: org.mariadb.jdbc.Driver
+        RUNDECK_DATABASE_USERNAME: rundeck
+        RUNDECK_DATABASE_PASSWORD: rundeck
+        RUNDECK_DATABASE_URL: jdbc:mariadb://mariadb/rundeck?autoReconnect=true&useSSL=false
+        RUNDECK_GRAILS_URL: localhost:4440
+    ports:
+      - 4440:4440
+    depends_on:
+      - mariadb
+  mariadb:
+    image: mariadb:10.7.4
+    expose:
+      - 3306
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_DATABASE=rundeck
+      - MARIADB_USER=rundeck
+      - MARIADB_PASSWORD=rundeck
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+    dbdata:
