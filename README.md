@@ -17,10 +17,14 @@ Para subir o ambiente você pode utilizar um dos comandos abaixo.
 ```shell
 $ docker-compose up
 ```
-1 - Caso utilize podman-compose
+2 - Caso utilize podman-compose
 ```shell
 $ podman-compose up
 ```
+Pode demorar um pouco até o serviço ficar disponível, aguarde até aparecer a mensagem abaixo nos logs de serviço
+![](/static/log_01.png)
+Agora você pode acessar o rundeck através da URL http://localhost:4440
 
+![](/static/acesso_01.gif)
 ## Documentações úteis
 * [Rundeck running on docker](https://docs.rundeck.com/docs/administration/install/docker.html#rundeck-enterprise)
